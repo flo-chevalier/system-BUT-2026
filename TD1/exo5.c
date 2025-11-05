@@ -17,7 +17,7 @@ int *constructionTableau(const int taille) {
 
     if (tableau == NULL) {
         printf("Allocation echouée\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     for (int i = 0; i < taille; i++) {
@@ -51,12 +51,12 @@ int saisirTailleTableau() {
 void verifierValiditeSaisie(const int nombre) {
     if (nombre > TAILLE_MAX) {
         printf("Nombre trop grand. Fin du programme\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     if (nombre < TAILLE_MIN) {
         printf("Nombre trop petit. Fin du programme\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 }
 
@@ -67,7 +67,7 @@ void modifierTailleTableau(int *chiffres, const int nouvelleTaille, const int an
         printf("La réallocation a échouée!\n");
         free(nouveau);
 
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     // si la nouvelle taille est plus grande, on génère des nombres pour les nouvelles cases

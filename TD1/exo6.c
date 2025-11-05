@@ -77,12 +77,12 @@ void destructionMatrice(int **matrice, const int nbLignes) {
 void verifierValiditeSaisie(const int nombre) {
     if (nombre > MAX_LIGNE) {
         printf("Nombre trop grand. Fin du programme\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     if (nombre < MIN_LIGNE) {
         printf("Nombre trop petit. Fin du programme\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 }
 
@@ -102,5 +102,5 @@ int main(const int argc, char *argv[]) {
     affichageMatrice(matrice, nbLignes, nbColonnes);
     destructionMatrice(matrice, nbLignes);
 
-    return 0;
+    return EXIT_SUCCESS;
 }

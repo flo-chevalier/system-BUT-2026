@@ -22,17 +22,17 @@ int saisirTailleTableau() {
 void verifierTailleTableau(const int taille) {
     if (taille < TAILLE_MIN) {
         printf("Nombre trop petit. Fin du programe\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     if (taille > TAILLE_MAX) {
         printf("Nombre trop grand. Fin du programe\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 }
 
 int *construireTableau(const int taille) {
-    int *tab = (int*) malloc(taille * sizeof(int));
+    int *tab = malloc(taille * sizeof(int));
 
     if (tab == NULL) {
         printf("Allocation échouée\n");
@@ -71,5 +71,5 @@ int main(const int argc, const char *argv[]) {
     afficherTableau(tableau, tailleTableau);
     detruireTableau(tableau);
 
-    return 0;
+    return EXIT_SUCCESS;
 }

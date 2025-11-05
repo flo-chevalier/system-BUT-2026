@@ -4,16 +4,15 @@
 #include "exo8.h"
 
 int main(const int argc, char *argv[]) {
-    int i;
     int longueur;
     char tampon[MAX_LONGUEUR_CHAINE];
 
-    int taille = saisirNombreChaines(tampon);
+    const int taille = saisirNombreChaines(tampon);
     verifierValiditeTaille(taille);
 
     char **tableau = construireTableau(taille);
 
-    for (i = 0; i < taille; i++) {
+    for (int i = 0; i < taille; i++) {
         saisirChaine(tampon, i + 1);
 
         longueur = strlen(tampon) + 1; // +1 pour le marqueur de fin de chaine \n
@@ -26,7 +25,7 @@ int main(const int argc, char *argv[]) {
 
     detruireTableauChaines(tableau, taille);
 
-    return 0;
+    return EXIT_SUCCESS;
 }
 
 
@@ -63,21 +62,20 @@ void saisirChaine(char tampon[], const int numero) {
 }
 
 int saisirNombreChaines(char tampon[]) {
-    int taille;
     printf("Saisir le nombre de chaines (%d -> %d):\n", MIN_NB_MOTS, MAX_NB_MOTS);
     fgets(tampon, 10, stdin);
-    taille = atoi(tampon);
+    const int taille = atoi(tampon);
     return taille;
 }
 
 void verifierValiditeTaille(const int taille) {
     if (taille > MAX_NB_MOTS) {
         printf("Nombre trop grand. Fin du programme\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     if (taille < MIN_NB_MOTS) {
         printf("Nombre trop petit. Fin du programme\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 }

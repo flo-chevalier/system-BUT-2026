@@ -78,12 +78,12 @@ void destructionMatrice(int **matrice, const int nbLignes) {
 void verifierValiditeSaisie(const int nombre) {
     if (nombre > MAX_LIGNE) {
         printf("Nombre trop grand. Fin du programme\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     if (nombre < MIN_LIGNE) {
         printf("Nombre trop petit. Fin du programme\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 }
 
@@ -143,7 +143,7 @@ int main(const int argc, char const *argv[]) {
     matrice = (int **) realloc(matrice, sizeof(int *) * newNbLignes);
     if (matrice == NULL) {
         destructionMatrice(matrice, nbLignes);
-        return -1;
+        return EXIT_FAILURE;
     }
 
     for (int i = 0; i < nbLignes; ++i) {
@@ -152,7 +152,7 @@ int main(const int argc, char const *argv[]) {
         if (matrice[i] == NULL) {
             printf("La réallocation a échouée!\n");
             destructionMatrice(matrice, newNbLignes);
-            return -1;
+            return EXIT_FAILURE;
         }
     }
 
@@ -164,7 +164,7 @@ int main(const int argc, char const *argv[]) {
         if (matrice[i] == NULL) {
             printf("L'allocation a échouée!\n");
             destructionMatrice(matrice, newNbLignes);
-            return -1;
+            return EXIT_FAILURE;
         }
     }
 
@@ -174,5 +174,5 @@ int main(const int argc, char const *argv[]) {
     affichageMatrice(matrice, newNbLignes, newNbColonnes);
     destructionMatrice(matrice, newNbLignes);
 
-    return 0;
+    return EXIT_SUCCESS;
 }
