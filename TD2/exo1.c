@@ -30,7 +30,7 @@ int main(const int argc, char const *argv[]) {
     }
 
     nombreCaracteres = write(fichier2, buffer, TAILLE);
-    if (nombreCaracteres != TAILLE) {
+    if (nombreCaracteres < 0) {
         printf("Erreur écriture fichier 2\n");
         close(fichier1);
         close(fichier2);
