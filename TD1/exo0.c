@@ -12,8 +12,7 @@ int main(const int argc, char *argv[] ){
     printf("vous avez saisie : %s \n", clavier);
 
     printf("\nMainenant, on va lister tous les arguments (argv)\n");
-    int i;
-    for (i = 0; i < argc; i++){
+    for (int i = 0; i < argc; i++){
         printf("%s \n", argv[i]);
     }
 
