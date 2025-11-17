@@ -17,6 +17,7 @@ int main(const int argc, char const* argv[]) {
             erreur("fork");
         case 0:
             nombre = 2;
+            sleep(2);
             printf("[enfant] PID = %d \t x=%d \t &x=%p\n", getpid(), nombre, &nombre);
             exit(EXIT_SUCCESS); // on kill l'enfant
         default:
