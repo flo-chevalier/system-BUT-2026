@@ -8,12 +8,13 @@
 #include <unistd.h>
 
 #define N 9876543210
-#define NB 4
+#define NB 6
 
 typedef struct {
     int numThread;
     uint64_t debut;
     uint64_t fin;
+    uint64_t resultat;
 } Arguments;
 
 
@@ -35,20 +36,14 @@ void* fonctionThread(void* arg) {
         somme += i;
     }
 
-    uint64_t* resultat = malloc(sizeof(uint64_t));
-    if (!resultat) {
-        pthread_exit(NULL);
-    }
-    *resultat = somme;
-
-    pthread_exit(resultat);
+    arguments->resultat = somme;
+    pthread_exit(NULL);
 }
 
 
 int main() {
     pthread_t thread[NB];
     Arguments donnees[NB];
-    void* retour[NB];
     uint64_t intervalle = N / NB;
     uint64_t resultat = 0;
 
@@ -72,13 +67,12 @@ int main() {
     }
 
     for (int i = 0; i < NB; i++) {
-        if (pthread_join(thread[i], &retour[i]) != 0) {
+        if (pthread_join(thread[i], NULL) != 0) {
             perror("pthread_join");
             return EXIT_FAILURE;
         }
 
-        resultat += *(uint64_t*) retour[i];
-        free(retour[i]);
+        resultat += donnees[i].resultat;
     }
 
     printf("Resultat final = %zu\n", resultat);

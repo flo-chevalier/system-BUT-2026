@@ -52,15 +52,13 @@ int main() {
     void* retour;
     if (pthread_join(thread, &retour) != 0) {
         perror("pthread_join");
-        return 1;
+        return EXIT_FAILURE;
     }
 
-    uint64_t* resultat = retour;
-
-    printf("Resultat = %zu\n", *resultat);
+    printf("Resultat = %zu\n", *(u_int64_t*) retour);
     afficherTemps();
 
-    free(resultat);
+    free(retour);
 
     return EXIT_SUCCESS;
 }
